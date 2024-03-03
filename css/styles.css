@@ -1,0 +1,40 @@
+/* скидання дефолтних налаштувань від браузера */
+.list {
+    list-style-type: none;
+}
+.link {
+    text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+ul, ol {
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+a {
+    text-decoration: none;
+}
+.button {
+    cursor: pointer;
+}
+img {
+    display: block;
+}
+
+.gallery {
+padding-top: 24px;
+display: grid;
+align-items: center;
+justify-content: center;
+width: 1200px;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-rows: 200px;
+gap: 24px;
+margin-left: auto;
+margin-right: auto;
+
+}
