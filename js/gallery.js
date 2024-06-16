@@ -68,10 +68,10 @@ const gallery = document.querySelector('.gallery');
 gallery.addEventListener('click', openModal);
 function openModal(event) {
   event.preventDefault();
+  console.log(event.target.nodeName);
   if (event.target === event.currentTarget) {
     return;
   }
-  console.log(event.target);
   const instance = basicLightbox.create(`
 	 <div class="modal">
     <img src="${event.target.dataset.source}" alt="${event.target.alt}" width=1112px height=640px
