@@ -64,33 +64,29 @@ const images = [
   },
 ];
 
-const gallerey = document.querySelector('.gallery');
-gallerey.insertAdjacentHTML('beforeend', createMarkup(images));
-gallerey.addEventListener('click', handleOpenModal);
-function handleOpenModal(event) {
-  event.preventDefault(); // скидання дефолтних налаштувань браузера
-  if (event.currentTarget === event.terget) return; // робимо перевірку на випадок того, якщо ми клікнемо не на картинку нам не потрібно обробляти цей варіант
-  const currentProduct = event.target.closest('.gallery-image'); //шукає найближчий батькивський елмент, який підходить під цей селектор
-  const productSource = currentProduct.dataset.source;
-
-  const product = images.find(({ original }) => original === productSource);
+const gallery = document.querySelector('.gallery');
+gallery.addEventListener('click', openModal);
+function openModal(event) {
+  event.preventDefault();
+  if (event.target === event.currentTarget) {
+    return;
+  }
+  console.log(event.target);
   const instance = basicLightbox.create(`
 	 <div class="modal">
-    <img src="${product.preview}" alt="${product.description}" width=1112px height=640px
+    <img src="${event.target.dataset.source}" alt="${event.target.alt}" width=1112px height=640px
     </div>
 `);
   instance.show(); // метод який відкриє модальне вікно
 }
 
-function createMarkup(arr) {
-  return arr
-    .map(
-      ({ preview, original, description }) => `
-    <li class="gallery-item">
-    <a class="gallery-link" href="${original}">
+const newImages = images.map(image => {
+  const { preview, original, description } = image;
+  const li = `<li class="gallery-item">
+    <a class="gallery-link" href="${original}"/>
     <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description}" width=360px height=200px
     </li>
-    `
-    )
-    .join('');
-}
+    
+`;
+  gallery.insertAdjacentHTML('beforeend', li);
+});
